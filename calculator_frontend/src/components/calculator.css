@@ -3,20 +3,45 @@
   --color-secondary: #2ecc71;
   --color-accent: #e67e22;
 
+  /* Light mode variables */
   --bg: #f7f9fb;
   --panel: #ffffff;
   --text: #2c3e50;
   --muted: #95a5a6;
   --border: #e6ecf1;
   --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  --btn-bg: #ffffff;
+  --display-bg: linear-gradient(180deg, #ffffff, #f5f8fb);
+  --app-gradient: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+  --footer-bg: #ffffff;
+}
+
+/* Dark mode variables */
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --panel: #2d2d2d;
+  --text: #ffffff;
+  --muted: #b0b0b0;
+  --border: #404040;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  --btn-bg: #3a3a3a;
+  --display-bg: linear-gradient(180deg, #3a3a3a, #2d2d2d);
+  --app-gradient: linear-gradient(180deg, #2d2d2d 0%, var(--bg) 100%);
+  --footer-bg: #2d2d2d;
+  
+  /* Adjust colors for better dark mode visibility */
+  --color-primary: #5dade2;
+  --color-secondary: #58d68d;
+  --color-accent: #f39c12;
 }
 
 .app-shell {
   min-height: 100vh;
-  background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+  background: var(--app-gradient);
   color: var(--text);
   display: flex;
   flex-direction: column;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .app-main {
@@ -32,7 +57,8 @@
   color: var(--muted);
   font-size: 12px;
   border-top: 1px solid var(--border);
-  background: #fff;
+  background: var(--footer-bg);
+  transition: all 0.3s ease;
 }
 
 .calculator {
@@ -45,10 +71,11 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
 }
 
 .display {
-  background: linear-gradient(180deg, #ffffff, #f5f8fb);
+  background: var(--display-bg);
   padding: 18px 16px;
   border-bottom: 1px solid var(--border);
   min-height: 92px;
@@ -57,6 +84,7 @@
   justify-content: center;
   gap: 6px;
   outline: none;
+  transition: all 0.3s ease;
 }
 
 .expression {
@@ -65,6 +93,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.3s ease;
 }
 
 .result {
@@ -74,6 +103,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 0.3s ease;
 }
 
 .keypad {
@@ -91,14 +121,18 @@
 .btn {
   appearance: none;
   border: 1px solid var(--border);
-  background: #fff;
+  background: var(--btn-bg);
   color: var(--text);
   font-size: 18px;
   padding: 14px 0;
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.06s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition: all 0.2s ease;
   box-shadow: 0 2px 0 rgba(0,0,0,0.03);
+}
+
+[data-theme="dark"] .btn {
+  box-shadow: 0 2px 0 rgba(0,0,0,0.2);
 }
 
 .btn:hover {
@@ -106,9 +140,17 @@
   box-shadow: 0 6px 12px rgba(0,0,0,0.06);
 }
 
+[data-theme="dark"] .btn:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
 .btn:active {
   transform: translateY(0);
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] .btn:active {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .btn-operator {
@@ -116,6 +158,11 @@
   border-color: rgba(52, 152, 219, 0.35);
   color: var(--color-primary);
   font-weight: 700;
+}
+
+[data-theme="dark"] .btn-operator {
+  background: rgba(93, 173, 226, 0.15);
+  border-color: rgba(93, 173, 226, 0.4);
 }
 
 .btn-primary {
@@ -130,6 +177,11 @@
   border-color: rgba(230, 126, 34, 0.35);
   color: var(--color-accent);
   font-weight: 600;
+}
+
+[data-theme="dark"] .btn-accent {
+  background: rgba(243, 156, 18, 0.15);
+  border-color: rgba(243, 156, 18, 0.4);
 }
 
 .btn-grow {
